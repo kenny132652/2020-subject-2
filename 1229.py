@@ -17,7 +17,6 @@ reserved = {          #關鍵字的tokens
     'sub':'SUB',
     'div':'DIV',
     'mul':'MUL',
-    
 }
 tokens = [
     'NAME', 'NUMBER',
@@ -41,7 +40,11 @@ t_LARGE   = r'\>'
 t_SMALL   = r'\<'
 t_LRGEQ   = r'\>\='
 t_SMLEQ   = r'\<\='
+#無視空白
+t_ignore = " \t"
 
+#空字串
+names = {}
 
 #自定義變數
 def t_NAME(t):
@@ -58,9 +61,7 @@ def t_NUMBER(t):
     t.value = int(t.value)  
     return t
 
-#無視空白
-
-t_ignore = " \t"  
+ 
 
 #換行
 def t_newline(t):
@@ -82,8 +83,6 @@ precedence = (
 )
 
 
-#空字串
-names = {}
 
 #for迴圈
 def p_statement_for(p):
@@ -125,7 +124,7 @@ def p_statement_if(p):
         names[p[2]] = p[2]
         print(" True X = ",p[7])
     elif p[2]==False:
-        names[p[2]]=p[9]
+        names[p[2]]=p[2]
         print(" False X = ",p[9])
     
 
@@ -151,7 +150,8 @@ def p_statement_sig(p):
             sum+=(i/num) ** power
     names[p[2]]=sum
     print("Ars = ",sum)
- 
+
+    
 #將輸入放入字串中
 def p_statement_assign(p):
     'statement : NAME EQUALS expression'
