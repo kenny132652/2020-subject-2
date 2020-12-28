@@ -123,10 +123,10 @@ def p_statement_if(p):
 
     if p[3]==True:
         names[p[3]] = p[6]
-        print(" True X= ",p[3])
+        print(" True X= ",p[6])
     else:
         names[p[3]]=p[9]
-        print(" False X= ",p[3])
+        print(" False X= ",p[9])
     
 
 #sigma計算機
