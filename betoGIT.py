@@ -150,7 +150,7 @@ def p_statement_sig(p):
         elif p[3]=='div':
             sum+=(i/num) ** power
     names[p[2]]=sum
-    print(p[2])
+    print("Ars = ",sum)
 #標準差計算機(process standard deviation
 def p_statement_psd(p):
     '''statement      : PSD NAME NUMBER NUMBER NUMBER 
@@ -173,7 +173,7 @@ def p_statement_psd(p):
         sd+=(((p[i]-avg)**2)*(1/p[3]))
     sd=sd**0.5
     names[p[2]]=sd
-    print(p[2])
+    print("這",p[3],"筆資料的標準差為 ： ",sd)
     
 #將輸入放入字串中
 def p_statement_assign(p):
