@@ -1,7 +1,7 @@
 # 2020System
 
 ```diff
-執行 python3 betoGIT.py
+執行 python3 1229.py
 ```
 
 # 語法：
