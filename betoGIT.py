@@ -17,7 +17,7 @@ reserved = {          #關鍵字的tokens
     'sub':'SUB',
     'div':'DIV',
     'mul':'MUL',
-    
+    'psd' : 'PSD',
 }
 tokens = [
     'NAME', 'NUMBER',
@@ -109,24 +109,24 @@ def p_statement_if(p):
                     | IF NAME NUMBER SMLEQ NUMBER THEN NUMBER ELSE NUMBER'''
                     # if   X  4      ==    4       Y     5     N      3
     if p[4] == '==':
-        p[2] = p[3] == p[5]
+        p[3] = p[3] == p[5]
     elif p[4] == '!=':
-        p[2] = p[3] != p[5]
-    elif p[4] == '>':
-        p[2] = p[3] > p[5]
-    elif p[4] == '>=':
-        p[2] = p[3] >= p[5]
-    elif p[4] == '<':
-        p[2] = p[3] < p[5]
-    elif p[4] == '<=':
-        p[2] = p[3] <= p[5]
+        p[3] = p[3] != p[5]
+    elif p[2] == '>':
+        p[0] = p[3] > p[5]
+    elif p[2] == '>=':
+        p[0] = p[3] >= p[5]
+    elif p[2] == '<':
+        p[0] = p[3] < p[5]
+    elif p[2] == '<=':
+        p[0] = p[3] <= p[5]
 
-    if p[2]==True:
-        names[p[2]] = p[2]
-        print(" True X = ",p[7])
-    elif p[2]==False:
-        names[p[2]]=p[9]
-        print(" False X = ",p[9])
+    if p[3]==True:
+        names[p[3]] = p[6]
+        print(" True X= ",p[6])
+    else:
+        names[p[3]]=p[9]
+        print(" False X= ",p[9])
     
 
 #sigma計算機
@@ -151,7 +151,30 @@ def p_statement_sig(p):
             sum+=(i/num) ** power
     names[p[2]]=sum
     print("Ars = ",sum)
- 
+#標準差計算機(process standard deviation
+def p_statement_psd(p):
+    '''statement      : PSD NAME NUMBER NUMBER NUMBER 
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+                      | PSD NAME NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER 
+    '''
+                    #  psd 變數 幾筆資料 資料.....資料 範圍是2~11筆
+    avg=0
+    sd=0
+    for i in range(4,4+p[3]):
+        avg+=p[i]/p[3]
+    for i in range(4,4+p[3]):
+        sd+=(((p[i]-avg)**2)*(1/p[3]))
+    sd=sd**0.5
+    names[p[2]]=sd
+    print("這",p[3],"筆資料的標準差為 ： ",sd)
+    
 #將輸入放入字串中
 def p_statement_assign(p):
     'statement : NAME EQUALS expression'
