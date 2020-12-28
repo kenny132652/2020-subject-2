@@ -26,8 +26,8 @@ input
 ``` 
 * if 比大小 輸入：if 變數 變數的值 符號(==、!=、>、>=、<、<=) then 符合if之後變數愈變成的數字 else愈變成的數字   
 ```diff
-input : for x ran 1 10 add
-x = 55
+input : if x 4< 5 then 7 else 6
+ False X= 6
 input : 
 ``` 
 * 算術之後產出passing tree 輸入任意運算式： 例： 7+8-9+11-99
