@@ -356,7 +356,7 @@ while True:
             plt.title('draw_networkx')
             pos = graphviz_layout(G, prog='dot')
             nx.draw(G, pos, with_labels=True, arrows=False, node_size=500)
-
+            plt.show()
             plt.savefig('nx_test.png')
             plt.clf()
         i=i+1
