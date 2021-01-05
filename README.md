@@ -30,7 +30,7 @@ input : if x 4< 5 then 7 else 6
  False X= 6
 input : 
 ``` 
-* 算術之後產出passing tree 輸入任意運算式： 例： 7+8-9+11-99
+* 四則運算之後繪製passing tree ,輸入任意運算式： 例： 7+8-9+11-99
 ```diff
 input : 2+5+7+8
 22
